@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { initFlowbite } from 'flowbite';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +11,9 @@ import { RouterOutlet } from '@angular/router';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent {
-  title = 'angular-crud-rest-api';
+export class AppComponent implements OnInit {
+  ngOnInit(): void {
+    initFlowbite()
+  }
+  title = 'angular-crud-rest-api'; 
 }
