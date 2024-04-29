@@ -1,16 +1,19 @@
-import { Injectable } from "@angular/core";
-import { ActivatedRouteSnapshot, CanActivate, GuardResult, MaybeAsync, RouterStateSnapshot } from "@angular/router";
+import { Injectable } from '@angular/core';
+import { CanActivate, Router } from '@angular/router';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class CanActivateAuth implements CanActivate {
-  canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ): MaybeAsync<GuardResult> {
+
+  constructor(private router: Router) {}
+
+  canActivate(): boolean {
     if(localStorage.getItem('davit')){
       return true;
+    } else {
+      this.router.navigate(['/login']); // If not authenticated, redirect to login
+      return false;
     }
-    // add redirect
-    return false;
   }
 }
